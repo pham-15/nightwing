@@ -1,7 +1,8 @@
 # Technical Architecture
 
 ## Recommended Architecture
-- Raspberry Pi or similar mini-computer: main brain.
+
+- Raspberry Pi 4.
 - Microphone: voice input.
 - Speaker: voice output.
 - Small screen: display status/info.
@@ -9,6 +10,7 @@
 - 3D-printed shell: physical robot body.
 
 ## Software Modules
+
 - main.py
 - audio_input.py
 - speech_to_text.py

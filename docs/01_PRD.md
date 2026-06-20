@@ -1,18 +1,19 @@
 # Product Requirements Document (PRD)
-# Personal AI Assistant Desk Robot
 
-**Project Name:** Personal AI Assistant Robot  
+# Project Nightwing
+
+**Project Name:** Project Nightwing  
 **Version:** Version 1 Planning Draft  
 **Owner:** Alex Pham  
 **Document Type:** Product Requirements Document  
 **Status:** Draft  
-**Last Updated:** 2026-06-18  
+**Last Updated:** 2026-06-19
 
 ---
 
 ## 1. Product Summary
 
-The Personal AI Assistant Desk Robot is a beginner-friendly hardware and software project. The goal is to build a small, cute, 3D-printed desk robot that acts as a physical host for an AI assistant.
+Project Nightwing is a beginner-friendly hardware and software project. The goal is to build a small, cute, 3D-printed desk robot that acts as a physical host for an AI assistant.
 
 The robot will not be a fully functional moving robot in Version 1. Instead, it will behave more like a custom smart assistant device. The user should be able to speak to it, ask useful questions, and receive spoken responses. A small screen should display helpful information when needed, such as the assistant status, today's calendar events, weather, reminders, or a simple robot face.
 
@@ -420,20 +421,20 @@ Screen: Shows sender and subject only.
 
 ## 12. Functional Requirements
 
-| ID | Requirement | Priority | Version |
-|---|---|---:|---|
-| FR-001 | Device can boot and connect to Wi-Fi | Must Have | V1 |
-| FR-002 | Device can display a basic status screen | Must Have | V1 |
-| FR-003 | Device can play spoken audio | Must Have | V1 |
-| FR-004 | Device can capture voice input or accept temporary typed input | Must Have | V1 |
-| FR-005 | Assistant can answer basic questions | Must Have | V1 |
-| FR-006 | Assistant can show simple visual responses | Must Have | V1 |
-| FR-007 | Assistant can fetch weather | Should Have | V1 |
-| FR-008 | Assistant can fetch today’s Google Calendar events | Should Have | V1 or V1.1 |
-| FR-009 | Assistant can summarize Gmail safely | Could Have | V1.2+ |
-| FR-010 | Device can use LED status indicators | Could Have | V1.1+ |
-| FR-011 | Device can use a push-to-talk button | Could Have | V1.1+ |
-| FR-012 | Device can fit inside a 3D-printed desk robot body | Should Have | V1.2+ |
+| ID     | Requirement                                                    |    Priority | Version    |
+| ------ | -------------------------------------------------------------- | ----------: | ---------- |
+| FR-001 | Device can boot and connect to Wi-Fi                           |   Must Have | V1         |
+| FR-002 | Device can display a basic status screen                       |   Must Have | V1         |
+| FR-003 | Device can play spoken audio                                   |   Must Have | V1         |
+| FR-004 | Device can capture voice input or accept temporary typed input |   Must Have | V1         |
+| FR-005 | Assistant can answer basic questions                           |   Must Have | V1         |
+| FR-006 | Assistant can show simple visual responses                     |   Must Have | V1         |
+| FR-007 | Assistant can fetch weather                                    | Should Have | V1         |
+| FR-008 | Assistant can fetch today’s Google Calendar events             | Should Have | V1 or V1.1 |
+| FR-009 | Assistant can summarize Gmail safely                           |  Could Have | V1.2+      |
+| FR-010 | Device can use LED status indicators                           |  Could Have | V1.1+      |
+| FR-011 | Device can use a push-to-talk button                           |  Could Have | V1.1+      |
+| FR-012 | Device can fit inside a 3D-printed desk robot body             | Should Have | V1.2+      |
 
 ---
 
@@ -717,17 +718,17 @@ A later version will be successful if:
 
 ## 18. Risks and Mitigations
 
-| Risk | Impact | Likelihood | Mitigation |
-|---|---|---:|---|
-| Budget exceeds $150 | Medium | High | Prioritize core parts first; delay body, LEDs, and advanced display |
-| Raspberry Pi availability or price changes | Medium | Medium | Consider alternate small computers or used parts |
-| Audio setup is harder than expected | High | Medium | Start with USB microphone/speaker instead of raw modules |
-| Display setup is confusing | Medium | Medium | Choose well-documented display; test before mounting |
-| Google API setup is frustrating | Medium | Medium | Add Google integrations after local assistant works |
-| Gmail privacy issues | High | Medium | Use read-only access first; summarize safely; avoid sending/deleting |
-| 3D-printed body does not fit parts | Medium | Medium | Do not print final body until exact hardware dimensions are known |
-| User gets overwhelmed | High | High | Break work into small phases with one next step at a time |
-| Power problems damage parts | High | Low/Medium | Use proper power supplies; unplug before rewiring; avoid batteries early |
+| Risk                                       | Impact | Likelihood | Mitigation                                                               |
+| ------------------------------------------ | ------ | ---------: | ------------------------------------------------------------------------ |
+| Budget exceeds $150                        | Medium |       High | Prioritize core parts first; delay body, LEDs, and advanced display      |
+| Raspberry Pi availability or price changes | Medium |     Medium | Consider alternate small computers or used parts                         |
+| Audio setup is harder than expected        | High   |     Medium | Start with USB microphone/speaker instead of raw modules                 |
+| Display setup is confusing                 | Medium |     Medium | Choose well-documented display; test before mounting                     |
+| Google API setup is frustrating            | Medium |     Medium | Add Google integrations after local assistant works                      |
+| Gmail privacy issues                       | High   |     Medium | Use read-only access first; summarize safely; avoid sending/deleting     |
+| 3D-printed body does not fit parts         | Medium |     Medium | Do not print final body until exact hardware dimensions are known        |
+| User gets overwhelmed                      | High   |       High | Break work into small phases with one next step at a time                |
+| Power problems damage parts                | High   | Low/Medium | Use proper power supplies; unplug before rewiring; avoid batteries early |
 
 ---
 
@@ -765,16 +766,16 @@ Any of those features should require a future explicit design decision.
 
 These questions should be answered before or during the next planning stage:
 
-1. What exact main board should be used?
-2. Should the first screen be OLED, LCD, or HDMI?
-3. Should the first microphone be USB or a module?
-4. Should the first speaker be USB, Bluetooth, 3.5 mm, or wired amplifier?
-5. Should the assistant use push-to-talk first?
-6. Should the robot body be custom designed or based on an existing model?
-7. Does the user have access to a 3D printer?
-8. Should the first version be powered only by wall power?
-9. What AI service should be used for the assistant brain?
-10. Should the project use Python as the main software language?
+1. What exact main board should be used? Raspberry Pi 4.
+2. Should the first screen be OLED, LCD, or HDMI? A simple HDMI screen for now.
+3. Should the first microphone be USB or a module? USB for now.
+4. Should the first speaker be USB, Bluetooth, 3.5 mm, or wired amplifier? USB for now.
+5. Should the assistant use push-to-talk first? Yes, and then move to speak to wake.
+6. Should the robot body be custom designed or based on an existing model? Ideally custom, but depends on budget.
+7. Does the user have access to a 3D printer? The user does not, but is willing to get a membership to a local makerspace.
+8. Should the first version be powered only by wall power? Yes, but allow for battery integration later.
+9. What AI service should be used for the assistant brain? Ideally, we download an LLM, but we can use an AI service if that is too complicated right now.
+10. Should the project use Python as the main software language? The main language should be whatever is most convienent.
 
 ---
 

@@ -1,12 +1,12 @@
 # Engineering Roadmap
 
-**Project:** Personal AI Assistant Desk Robot  
+**Project:** Project Nightwing
 **Document:** Engineering Roadmap  
-**Version:** 1.0 Expanded  
+**Version:** 1.0  
 **Target Version:** Version 1 beginner build  
 **Budget Goal:** Around $150 for core prototype when possible  
 **Primary User:** Alex, beginner electronics learner  
-**Last Updated:** 2026-06-18
+**Last Updated:** 2026-06-19
 
 ---
 
@@ -86,7 +86,7 @@ The first win is: **ask the robot a question and hear it answer.**
 
 ### 3.1 Main Brain
 
-Use a Raspberry Pi or similar small computer as the main brain.
+Use a Raspberry Pi as the main brain.
 
 The main brain handles:
 
@@ -124,11 +124,11 @@ For Version 1, Arduino is optional. It can be used in early learning phases and 
 ### 3.3 High-Level System Diagram
 
 ```text
-User voice
+User pushes physical button
    ↓
-Microphone
+Raspberry Pi 4 GPIO detects button press
    ↓
-Raspberry Pi / main computer
+USB microphone records voice
    ↓
 Assistant software
    ↓
@@ -157,23 +157,23 @@ LED eyes / buttons / sensors
 
 ## 4. Roadmap Summary
 
-| Phase | Name | Main Goal | Core Output |
-|---:|---|---|---|
-| 0 | Project Setup and Decisions | Decide the first build path | Clear Version 1 plan and parts list |
-| 1 | Beginner Electronics Practice | Learn basic Arduino/wiring concepts | LED/button/sensor confidence |
-| 2 | Main Computer Setup | Set up Raspberry Pi or equivalent | Bootable device with Wi-Fi and Python |
-| 3 | Screen Prototype | Display simple text/status | Working screen output |
-| 4 | Audio Prototype | Test microphone and speaker | Record and play audio successfully |
-| 5 | Text Assistant Prototype | Build assistant without voice | Typed question → typed answer |
-| 6 | Voice Assistant Loop | Add speech input/output | Spoken question → spoken answer |
-| 7 | Local Dashboard UI | Show useful screen states | Idle/listening/thinking/answer screens |
-| 8 | Calendar Integration | Connect Google Calendar | “What do I have today?” works |
-| 9 | Weather Integration | Add weather responses | Weather answer and screen card |
-| 10 | Gmail Integration | Add limited email support | Safe email summary/checking |
-| 11 | Physical Robot Planning | Choose/design shell | Dimensions and mounting plan |
-| 12 | Integration Build | Put electronics in shell | Working desk robot prototype |
-| 13 | Polish and Reliability | Make it easier to use | Auto-start, error handling, cleanup |
-| 14 | Future Expansion | Add optional features | LEDs, buttons, wake word, movement later |
+| Phase | Name                          | Main Goal                           | Core Output                              |
+| ----: | ----------------------------- | ----------------------------------- | ---------------------------------------- |
+|     0 | Project Setup and Decisions   | Decide the first build path         | Clear Version 1 plan and parts list      |
+|     1 | Beginner Electronics Practice | Learn basic Arduino/wiring concepts | LED/button/sensor confidence             |
+|     2 | Main Computer Setup           | Set up Raspberry Pi or equivalent   | Bootable device with Wi-Fi and Python    |
+|     3 | Screen Prototype              | Display simple text/status          | Working screen output                    |
+|     4 | Audio Prototype               | Test microphone and speaker         | Record and play audio successfully       |
+|     5 | Text Assistant Prototype      | Build assistant without voice       | Typed question → typed answer            |
+|     6 | Voice Assistant Loop          | Add speech input/output             | Spoken question → spoken answer          |
+|     7 | Local Dashboard UI            | Show useful screen states           | Idle/listening/thinking/answer screens   |
+|     8 | Calendar Integration          | Connect Google Calendar             | “What do I have today?” works            |
+|     9 | Weather Integration           | Add weather responses               | Weather answer and screen card           |
+|    10 | Gmail Integration             | Add limited email support           | Safe email summary/checking              |
+|    11 | Physical Robot Planning       | Choose/design shell                 | Dimensions and mounting plan             |
+|    12 | Integration Build             | Put electronics in shell            | Working desk robot prototype             |
+|    13 | Polish and Reliability        | Make it easier to use               | Auto-start, error handling, cleanup      |
+|    14 | Future Expansion              | Add optional features               | LEDs, buttons, wake word, movement later |
 
 ---
 
@@ -199,16 +199,16 @@ A lot of beginner electronics projects fail because the builder buys random part
 
 ### Recommended Default Decisions
 
-| Decision | Recommended Default | Reason |
-|---|---|---|
-| Main brain | Raspberry Pi-style small computer | Best beginner path for Wi-Fi, Python, APIs, display, and audio |
-| Arduino | Optional, not required for core assistant | Better used for learning or later LEDs/buttons |
-| Screen | Small HDMI or SPI display | Easier to show status and information |
-| Mic | USB microphone or USB audio input | Easier than raw microphone wiring |
-| Speaker | Small powered speaker or USB speaker | Easier than building an amplifier circuit |
-| Movement | No movement | Keeps Version 1 realistic |
-| Battery | Wall power only | Safer and simpler |
-| Robot shell | Later | Electronics should work before enclosure design |
+| Decision    | Recommended Default                       | Reason                                                         |
+| ----------- | ----------------------------------------- | -------------------------------------------------------------- |
+| Main brain  | Raspberry Pi 4                            | Best beginner path for Wi-Fi, Python, APIs, display, and audio |
+| Arduino     | Optional, not required for core assistant | Better used for learning or later LEDs/buttons                 |
+| Screen      | Small HDMI                                | Easier to show status and information                          |
+| Mic         | USB microphone                            | Easier than raw microphone wiring                              |
+| Speaker     | USB speaker                               | Easier than building an amplifier circuit                      |
+| Movement    | No movement                               | Keeps Version 1 realistic                                      |
+| Battery     | Wall power only                           | Safer and simpler                                              |
+| Robot shell | Later                                     | Electronics should work before enclosure design                |
 
 ### Tasks
 
@@ -269,14 +269,14 @@ This phase is for learning only. It does not need to become part of the final ro
 
 ### Beginner Concepts
 
-| Concept | Simple Meaning |
-|---|---|
-| Breadboard | A board that lets you connect wires without soldering |
-| LED | A small light that only works one direction |
-| Resistor | A part that limits electrical current |
-| Digital pin | A pin that is basically ON or OFF |
-| Ground/GND | The shared return path in the circuit |
-| 5V/3.3V | Power levels used by electronics |
+| Concept     | Simple Meaning                                        |
+| ----------- | ----------------------------------------------------- |
+| Breadboard  | A board that lets you connect wires without soldering |
+| LED         | A small light that only works one direction           |
+| Resistor    | A part that limits electrical current                 |
+| Digital pin | A pin that is basically ON or OFF                     |
+| Ground/GND  | The shared return path in the circuit                 |
+| 5V/3.3V     | Power levels used by electronics                      |
 
 ### Safety Notes
 
@@ -395,13 +395,13 @@ The screen gives the robot a face/status display and lets it show useful informa
 
 Test these screen states:
 
-| State | Expected Display |
-|---|---|
-| Idle | Robot face or “Ready” |
-| Listening | “Listening…” |
-| Thinking | “Thinking…” |
-| Speaking | “Speaking…” |
-| Error | Short understandable error message |
+| State     | Expected Display                   |
+| --------- | ---------------------------------- |
+| Idle      | Robot face or “Ready”              |
+| Listening | “Listening…”                       |
+| Thinking  | “Thinking…”                        |
+| Speaking  | “Speaking…”                        |
+| Error     | Short understandable error message |
 
 ### Done Means
 
@@ -441,23 +441,23 @@ Voice assistants fail if the audio setup is bad. It is easier to test microphone
 
 Perform these tests:
 
-| Test | Expected Result |
-|---|---|
-| Record voice | Audio file contains understandable speech |
-| Playback | Speaker plays clearly |
-| Normal distance | Robot can hear from desk distance |
-| Quiet room | Speech is clear |
-| Slight background noise | Speech is still somewhat usable |
+| Test                    | Expected Result                           |
+| ----------------------- | ----------------------------------------- |
+| Record voice            | Audio file contains understandable speech |
+| Playback                | Speaker plays clearly                     |
+| Normal distance         | Robot can hear from desk distance         |
+| Quiet room              | Speech is clear                           |
+| Slight background noise | Speech is still somewhat usable           |
 
 ### Common Issues
 
-| Problem | Likely Cause | Fix Direction |
-|---|---|---|
-| No microphone detected | Driver/device issue | Check USB/device settings |
-| Recording is silent | Wrong input selected | Choose correct input device |
-| Speaker silent | Wrong output selected | Choose correct output device |
-| Audio too quiet | Gain/volume too low | Adjust input/output levels |
-| Echo/feedback | Mic too close to speaker | Move them apart or lower volume |
+| Problem                | Likely Cause             | Fix Direction                   |
+| ---------------------- | ------------------------ | ------------------------------- |
+| No microphone detected | Driver/device issue      | Check USB/device settings       |
+| Recording is silent    | Wrong input selected     | Choose correct input device     |
+| Speaker silent         | Wrong output selected    | Choose correct output device    |
+| Audio too quiet        | Gain/volume too low      | Adjust input/output levels      |
+| Echo/feedback          | Mic too close to speaker | Move them apart or lower volume |
 
 ### Done Means
 
@@ -487,13 +487,13 @@ Typed input is much easier to debug than voice. If the assistant cannot answer t
 
 ### Example Commands
 
-| User Input | Expected Behavior |
-|---|---|
-| “Hello” | Assistant greets user |
-| “What can you do?” | Assistant lists available features |
+| User Input              | Expected Behavior                     |
+| ----------------------- | ------------------------------------- |
+| “Hello”                 | Assistant greets user                 |
+| “What can you do?”      | Assistant lists available features    |
 | “What do I have today?” | Placeholder calendar response for now |
-| “What is the weather?” | Placeholder weather response for now |
-| “Exit” | Program closes safely |
+| “What is the weather?”  | Placeholder weather response for now  |
+| “Exit”                  | Program closes safely                 |
 
 ### Deliverables
 
@@ -549,11 +549,11 @@ This phase creates the first real “robot assistant” experience.
 
 ### Activation Options
 
-| Option | Difficulty | Notes |
-|---|---:|---|
-| Keyboard press | Easy | Best for first testing |
-| Button press | Medium | Good later with Arduino or GPIO |
-| Wake word | Harder | Add after basics work |
+| Option           |            Difficulty | Notes                                 |
+| ---------------- | --------------------: | ------------------------------------- |
+| Keyboard press   |                  Easy | Best for first testing                |
+| Button press     |                Medium | Good later with Arduino or GPIO       |
+| Wake word        |                Harder | Add after basics work                 |
 | Always listening | Not recommended first | More privacy and reliability concerns |
 
 ### Recommended First Activation
@@ -595,24 +595,24 @@ The screen makes the robot feel alive and helps show information quickly.
 
 ### Required UI States
 
-| State | Purpose |
-|---|---|
-| Idle | Shows robot is ready |
-| Listening | Shows it is hearing you |
-| Thinking | Shows it is processing |
-| Speaking | Shows it is responding |
-| Calendar | Shows today’s events |
-| Weather | Shows weather summary |
-| Error | Shows something went wrong |
+| State     | Purpose                    |
+| --------- | -------------------------- |
+| Idle      | Shows robot is ready       |
+| Listening | Shows it is hearing you    |
+| Thinking  | Shows it is processing     |
+| Speaking  | Shows it is responding     |
+| Calendar  | Shows today’s events       |
+| Weather   | Shows weather summary      |
+| Error     | Shows something went wrong |
 
 ### Possible UI Approaches
 
-| Approach | Difficulty | Notes |
-|---|---:|---|
-| Terminal text | Easy | Best for very early testing |
-| Python GUI | Medium | Good for a simple local screen |
-| Local web app | Medium | Flexible and easier to style |
-| Full custom animated face | Harder | Save for later polish |
+| Approach                  | Difficulty | Notes                          |
+| ------------------------- | ---------: | ------------------------------ |
+| Terminal text             |       Easy | Best for very early testing    |
+| Python GUI                |     Medium | Good for a simple local screen |
+| Local web app             |     Medium | Flexible and easier to style   |
+| Full custom animated face |     Harder | Save for later polish          |
 
 ### Recommended First UI
 
@@ -875,13 +875,13 @@ This turns the prototype into a real desk robot.
 
 ### Integration Risks
 
-| Risk | Why It Happens | Mitigation |
-|---|---|---|
-| Mic hears speaker echo | Mic and speaker too close | Separate placement, reduce volume |
-| Screen cable too short | Shell design not planned around cable | Measure before printing |
-| Device overheats | Poor airflow | Add vents and avoid tight sealed case |
-| Hard to repair | No access panel | Design removable back/bottom |
-| Audio muffled | Speaker blocked by plastic | Add speaker grille/opening |
+| Risk                   | Why It Happens                        | Mitigation                            |
+| ---------------------- | ------------------------------------- | ------------------------------------- |
+| Mic hears speaker echo | Mic and speaker too close             | Separate placement, reduce volume     |
+| Screen cable too short | Shell design not planned around cable | Measure before printing               |
+| Device overheats       | Poor airflow                          | Add vents and avoid tight sealed case |
+| Hard to repair         | No access panel                       | Design removable back/bottom          |
+| Audio muffled          | Speaker blocked by plastic            | Add speaker grille/opening            |
 
 ### Done Means
 
@@ -914,14 +914,14 @@ A prototype that only works when manually started is less useful. This phase mak
 
 ### Reliability Requirements
 
-| Requirement | Target |
-|---|---|
-| Boot to ready state | Within a reasonable time after power-on |
-| Handle Wi-Fi failure | Show/say understandable error |
-| Handle API failure | Do not crash |
-| Handle unclear speech | Ask user to repeat |
-| Handle no calendar events | Say there are no events |
-| Handle no unread emails | Say there are no unread emails |
+| Requirement               | Target                                  |
+| ------------------------- | --------------------------------------- |
+| Boot to ready state       | Within a reasonable time after power-on |
+| Handle Wi-Fi failure      | Show/say understandable error           |
+| Handle API failure        | Do not crash                            |
+| Handle unclear speech     | Ask user to repeat                      |
+| Handle no calendar events | Say there are no events                 |
+| Handle no unread emails   | Say there are no unread emails          |
 
 ### Done Means
 
@@ -937,18 +937,18 @@ Add optional features after Version 1 works.
 
 ### Possible Future Features
 
-| Feature | Difficulty | Notes |
-|---|---:|---|
-| LED eyes | Easy/Medium | Good Arduino or GPIO add-on |
-| Physical button | Easy/Medium | Good for activation or mute |
-| Wake word | Medium/Hard | Useful but not necessary first |
-| Better animated face | Medium | Makes robot feel more alive |
-| Touchscreen UI | Medium | More interactive |
-| Local memory/preferences | Medium | Store user settings |
-| Home Assistant integration | Medium | Control smart home devices |
-| Servo head movement | Medium/Hard | First movement feature |
-| Battery power | Harder | Requires safety planning |
-| Custom PCB | Advanced | Not needed early |
+| Feature                    |  Difficulty | Notes                          |
+| -------------------------- | ----------: | ------------------------------ |
+| LED eyes                   | Easy/Medium | Good Arduino or GPIO add-on    |
+| Physical button            | Easy/Medium | Good for activation or mute    |
+| Wake word                  | Medium/Hard | Useful but not necessary first |
+| Better animated face       |      Medium | Makes robot feel more alive    |
+| Touchscreen UI             |      Medium | More interactive               |
+| Local memory/preferences   |      Medium | Store user settings            |
+| Home Assistant integration |      Medium | Control smart home devices     |
+| Servo head movement        | Medium/Hard | First movement feature         |
+| Battery power              |      Harder | Requires safety planning       |
+| Custom PCB                 |    Advanced | Not needed early               |
 
 ### Expansion Rule
 
@@ -960,17 +960,17 @@ Do not add advanced features until the basic assistant is reliable.
 
 This is not a strict schedule. It is a suggested order.
 
-| Time Period | Focus | Expected Result |
-|---|---|---|
-| Week 1 | Phase 0 and 1 | Plan parts and learn Arduino basics |
-| Week 2 | Phase 2 | Main computer set up |
-| Week 3 | Phase 3 and 4 | Screen, mic, and speaker tested |
-| Week 4 | Phase 5 | Typed assistant working |
-| Week 5 | Phase 6 and 7 | Voice loop and basic screen states working |
-| Week 6 | Phase 8 and 9 | Calendar and weather working |
-| Week 7 | Phase 10 | Gmail read-only support working |
-| Week 8 | Phase 11 and 12 | Robot shell planned and integration started |
-| Week 9+ | Phase 13 and 14 | Polish, reliability, future features |
+| Time Period | Focus           | Expected Result                             |
+| ----------- | --------------- | ------------------------------------------- |
+| Week 1      | Phase 0 and 1   | Plan parts and learn Arduino basics         |
+| Week 2      | Phase 2         | Main computer set up                        |
+| Week 3      | Phase 3 and 4   | Screen, mic, and speaker tested             |
+| Week 4      | Phase 5         | Typed assistant working                     |
+| Week 5      | Phase 6 and 7   | Voice loop and basic screen states working  |
+| Week 6      | Phase 8 and 9   | Calendar and weather working                |
+| Week 7      | Phase 10        | Gmail read-only support working             |
+| Week 8      | Phase 11 and 12 | Robot shell planned and integration started |
+| Week 9+     | Phase 13 and 14 | Polish, reliability, future features        |
 
 If school/work is busy, this can easily become a multi-month project. That is okay.
 
@@ -1108,43 +1108,43 @@ Then combine them.
 
 ### 23.2 Test Levels
 
-| Level | What It Means | Example |
-|---|---|---|
-| Component test | One part works by itself | Mic records audio |
-| Integration test | Two systems work together | Voice text goes to assistant |
-| End-to-end test | Whole user flow works | Ask calendar question and hear answer |
-| Reliability test | Works repeatedly | Ask 10 questions without crashing |
-| Enclosure test | Works inside shell | Audio and heat still okay |
+| Level            | What It Means             | Example                               |
+| ---------------- | ------------------------- | ------------------------------------- |
+| Component test   | One part works by itself  | Mic records audio                     |
+| Integration test | Two systems work together | Voice text goes to assistant          |
+| End-to-end test  | Whole user flow works     | Ask calendar question and hear answer |
+| Reliability test | Works repeatedly          | Ask 10 questions without crashing     |
+| Enclosure test   | Works inside shell        | Audio and heat still okay             |
 
 ### 23.3 End-to-End Test Cases
 
-| Test | User Says | Expected Result |
-|---|---|---|
-| Basic assistant | “Hello” | Assistant responds naturally |
-| Calendar | “What do I have today?” | Speaks and displays events |
-| Calendar empty | “What do I have today?” | Says no events if calendar is empty |
-| Weather | “What is the weather?” | Speaks and displays weather |
-| Gmail | “Do I have unread emails?” | Summarizes safely |
-| Unknown request | “Can you teleport?” | Says it cannot do that |
-| Bad audio | Mumbled speech | Asks user to repeat |
-| Wi-Fi down | Any API request | Shows/says network error |
+| Test            | User Says                  | Expected Result                     |
+| --------------- | -------------------------- | ----------------------------------- |
+| Basic assistant | “Hello”                    | Assistant responds naturally        |
+| Calendar        | “What do I have today?”    | Speaks and displays events          |
+| Calendar empty  | “What do I have today?”    | Says no events if calendar is empty |
+| Weather         | “What is the weather?”     | Speaks and displays weather         |
+| Gmail           | “Do I have unread emails?” | Summarizes safely                   |
+| Unknown request | “Can you teleport?”        | Says it cannot do that              |
+| Bad audio       | Mumbled speech             | Asks user to repeat                 |
+| Wi-Fi down      | Any API request            | Shows/says network error            |
 
 ---
 
 ## 24. Risk Register
 
-| Risk | Impact | Likelihood | Mitigation |
-|---|---:|---:|---|
-| Budget exceeds $150 | Medium | Medium | Buy core parts first, delay shell/LEDs |
-| Raspberry Pi supply/prices vary | Medium | Medium | Consider alternatives or use existing computer first |
-| Audio quality is poor | High | Medium | Use USB mic/speaker, test before enclosure |
-| Google API setup is confusing | Medium | High | Follow one integration at a time |
-| Credentials accidentally exposed | High | Medium | Use `.gitignore`, do not share keys |
-| Too many features too early | High | High | Follow roadmap phases |
-| Screen incompatible or hard to configure | Medium | Medium | Prefer beginner-friendly display options |
-| Robot shell does not fit parts | Medium | Medium | Measure after electronics are chosen |
-| Heat buildup inside shell | Medium | Medium | Add ventilation and test temperature |
-| Project becomes overwhelming | High | Medium | One phase, one task at a time |
+| Risk                                     | Impact | Likelihood | Mitigation                                           |
+| ---------------------------------------- | -----: | ---------: | ---------------------------------------------------- |
+| Budget exceeds $150                      | Medium |     Medium | Buy core parts first, delay shell/LEDs               |
+| Raspberry Pi supply/prices vary          | Medium |     Medium | Consider alternatives or use existing computer first |
+| Audio quality is poor                    |   High |     Medium | Use USB mic/speaker, test before enclosure           |
+| Google API setup is confusing            | Medium |       High | Follow one integration at a time                     |
+| Credentials accidentally exposed         |   High |     Medium | Use `.gitignore`, do not share keys                  |
+| Too many features too early              |   High |       High | Follow roadmap phases                                |
+| Screen incompatible or hard to configure | Medium |     Medium | Prefer beginner-friendly display options             |
+| Robot shell does not fit parts           | Medium |     Medium | Measure after electronics are chosen                 |
+| Heat buildup inside shell                | Medium |     Medium | Add ventilation and test temperature                 |
+| Project becomes overwhelming             |   High |     Medium | One phase, one task at a time                        |
 
 ---
 
