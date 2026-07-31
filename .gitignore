@@ -12,3 +12,5 @@ venv/
 # Python cache files
 __pycache__/
 *.pyc
+
+data/*.wav
