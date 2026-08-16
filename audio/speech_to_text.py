@@ -49,7 +49,7 @@ def transcribe_audio(audio_path: str | Path) -> str:
             f"Audio file was not found: {file_path}"
         )
 
-    api_key = os.getenv("OPENAI_API_KEY").strip()
+    api_key = os.getenv("OPENAI_API_KEY", "").strip()
 
     if not api_key:
         raise RuntimeError(

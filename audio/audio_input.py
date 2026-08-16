@@ -1,88 +1,74 @@
 from pathlib import Path
 
+import numpy as np
 import sounddevice as sd
 from scipy.io.wavfile import write
 
 
-# Locate the main project folder.
-#
-# This file is located at:
-# project-nightwing/audio/audio_input.py
-#
-# .parent       = audio folder
-# .parent.parent = project-nightwing folder
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-
-# Store temporary recordings inside:
-# project-nightwing/data/
 DATA_DIR = PROJECT_ROOT / "data"
 
-# Audio settings
 SAMPLE_RATE = 16_000
 CHANNELS = 1
-DEFAULT_DURATION = 5
 
 
 def record_audio(
-    duration: float = DEFAULT_DURATION,
     output_path: str | Path = "data/recording.wav",
 ) -> Path:
     """
-    Record audio from the computer's default microphone.
+    Record audio from the default microphone until Enter is pressed.
 
-    Args:
-        duration:
-            How many seconds to record.
-
-        output_path:
-            Where the WAV file should be saved. A relative path is
-            interpreted from the main project folder.
+    Later, the Enter key can be replaced with your physical button.
 
     Returns:
-        A Path object pointing to the saved WAV file.
-
-    Raises:
-        ValueError:
-            If the requested recording duration is invalid.
-
-        RuntimeError:
-            If recording or saving fails.
+        Path to the saved WAV file.
     """
-
-    if duration <= 0:
-        raise ValueError("Recording duration must be greater than zero.")
 
     file_path = Path(output_path)
 
-    # If the caller gives a relative path such as:
-    # data/recording.wav
-    #
-    # place it inside the project folder.
     if not file_path.is_absolute():
         file_path = PROJECT_ROOT / file_path
 
-    # Create the destination folder if it does not already exist.
     file_path.parent.mkdir(parents=True, exist_ok=True)
 
+    # This list will hold small chunks of recorded audio.
+    audio_chunks = []
+
+    def audio_callback(indata, frames, time, status):
+        """
+        This function is automatically called over and over
+        while the microphone stream is open.
+        """
+
+        if status:
+            print(status)
+
+        # Make a copy because sounddevice reuses its internal buffer.
+        audio_chunks.append(indata.copy())
+
     try:
-        print(f"Recording for {duration} seconds...")
+        print("Recording started.")
         print("Speak now.")
+        print("Press Enter to stop recording.")
 
-        # The total number of audio samples is:
-        # duration in seconds × samples per second
-        frame_count = int(duration * SAMPLE_RATE)
-
-        recording = sd.rec(
-            frames=frame_count,
+        with sd.InputStream(
             samplerate=SAMPLE_RATE,
             channels=CHANNELS,
             dtype="int16",
-        )
+            callback=audio_callback,
+        ):
+            # The microphone keeps recording while this InputStream
+            # block is open.
+            input()
 
-        # Wait until all requested audio has been recorded.
-        sd.wait()
+        print("Recording stopped.")
 
-        # Save the recording as a standard WAV file.
+        if not audio_chunks:
+            raise RuntimeError("No audio was recorded.")
+
+        # Join all of the little recorded chunks into one large array.
+        recording = np.concatenate(audio_chunks, axis=0)
+
         write(
             filename=str(file_path),
             rate=SAMPLE_RATE,
